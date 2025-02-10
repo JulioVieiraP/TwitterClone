@@ -1,0 +1,49 @@
+# Ambiente Virtual
+env/
+venv/
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Configurações e credenciais sensíveis
+.env
+*.sqlite3
+db.sqlite3
+.DS_Store
+
+# Arquivos de log e caches
+*.log
+*.pot
+*.pyc
+*.swp
+*.swo
+*.swn
+*.s~
+*.bak
+*.orig
+*.rej
+
+# Arquivos Django
+media/
+staticfiles/
+celerybeat-schedule
+
+# Frontend (React/Vue/etc.)
+node_modules/
+npm-debug.log
+yarn-error.log
+dist/
+build/
+*.map
+
+# Arquivos do VS Code
+.vscode/
+
+# Dependências do sistema
+.idea/
+*.iml
+Thumbs.db
+
+# Docker
+docker-compose.override.yml
