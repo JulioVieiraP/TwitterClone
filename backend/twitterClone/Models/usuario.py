@@ -3,7 +3,6 @@ from django.db import models
 
 
 class Usuario(AbstractUser):
-    slug = models.SlugField(max_length=100, blank=True, unique=True)
     email = models.EmailField(unique=True)
     foto_perfil = models.ImageField(
         upload_to="avatars/", blank=True, null=True, default="avatars/default.png"
