@@ -27,7 +27,15 @@ SECRET_KEY = "django-insecure-r1g_*apd-wa0ys2zs&itde70xcj8oix4n+mj)@=*5cxn4y7ddx
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["0.0.0.0", "localhost", "backend", "127.0.0.1"]
+ALLOWED_HOSTS = [
+    "0.0.0.0",
+    "localhost",
+    "backend",
+    "127.0.0.1",
+    "http://localhost:5173",
+]
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
@@ -47,6 +55,7 @@ INSTALLED_APPS = [
     "twitterClone",
     "django_extensions",
     "rest_framework_simplejwt",
+    "corsheaders",
 ]
 
 
@@ -69,6 +78,7 @@ SIMPLE_JWT = {
 
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",

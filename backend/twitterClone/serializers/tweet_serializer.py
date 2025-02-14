@@ -1,10 +1,11 @@
 from rest_framework import serializers
+from ..serializers import SimpleUsuarioSerializer
 from ..Models import Tweet, Trend
 import re
 
 
 class TweetSerializer(serializers.ModelSerializer):
-    user = serializers.StringRelatedField(read_only=True)
+    user = SimpleUsuarioSerializer(read_only=True)
     imagem = serializers.ImageField(required=False)
     likes = serializers.SerializerMethodField()
 
