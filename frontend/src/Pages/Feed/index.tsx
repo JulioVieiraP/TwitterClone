@@ -7,15 +7,17 @@ import * as S from './style';
 const Feed = () => {
     const [feed, setFeed] = useState<Feed>([]);
 
+    const fetchFeed = async () => {
+        try {
+            const response = await axios.get('/api/feeds');
+            setFeed(response.data);
+        } catch (error) {
+            console.error("Erro ao buscar o feed:", error);
+        }
+    };
+
     useEffect(() => {
-        axios.get('/api/feeds')
-            .then((response) => {
-                console.log(response.data);
-                setFeed(response.data);
-            })
-            .catch((error) => {
-                console.error("Erro ao buscar o feed:", error);
-            });
+        fetchFeed();
     }, []);
 
     return (
@@ -23,7 +25,7 @@ const Feed = () => {
             <S.Header>
                 <h1>Página inicial</h1>
             </S.Header>
-            <TweetPost />
+            <TweetPost fetchFeed={fetchFeed} />
             <section>
                 {feed.map((tweet) => (
                     <Tweet

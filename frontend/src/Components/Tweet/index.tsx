@@ -2,9 +2,9 @@ import * as S from './style'
 import Logo from '../Logo';
 import { TimeCalculator } from '../../Utils/timeSince';
 import { AiOutlineRetweet } from "react-icons/ai";
-import { FaRegHeart, FaHeart } from "react-icons/fa";
+import { FaRegHeart, FaHeart, FaRegComment  } from "react-icons/fa";
 
-const Tweet = ({ user, imagem, likes, content, created_at }: Tweet) => {
+const Tweet = ({ user, imagem, likes, content, created_at, answer_of, retweet_of }: Tweet) => {
     const fotoPerfil = user?.foto_perfil 
         ? `http://127.0.0.1:8000${user.foto_perfil}` 
         : undefined;
@@ -32,8 +32,8 @@ const Tweet = ({ user, imagem, likes, content, created_at }: Tweet) => {
                 <div className="tweet-text">{content}</div>
                 {Banner && <img className="tweet-image" src={Banner} alt="Tweet" />}
                 <div className="tweet-actions">
-                    <div className="action"><AiOutlineRetweet /> 61</div>
-                    <div className="action">💬</div>
+                    <div className="action"><FaRegComment /> {answer_of}</div>
+                    <div className="action"><AiOutlineRetweet /> {retweet_of}</div>
                     <div className="action">
                         {LikesCount > 0 ? <FaHeart color="red" /> : <FaRegHeart />} {LikesCount}
                     </div>

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 type AuthContextType = {
     user: UserProfile | null
+    setUser: React.Dispatch<React.SetStateAction<UserProfile | null>>;
     loginUser: (username: string, password: string) => Promise<void>
     RegisterUser: (username: string, password: string, email: string) => Promise<void>
     logout: () => void
@@ -50,7 +51,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             logout()
           }
         }
-      }, 15 * 60 * 1000)
+      }, 60 * 60 * 1000)
     
       return () => clearInterval(interval)
       // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -100,7 +101,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }
 
     return (
-        <AuthContext.Provider value={{ user, RegisterUser, loginUser, logout }}>
+        <AuthContext.Provider value={{ user, setUser, RegisterUser, loginUser, logout }}>
             {children}
         </AuthContext.Provider>
     )

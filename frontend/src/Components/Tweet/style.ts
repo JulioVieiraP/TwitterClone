@@ -14,7 +14,7 @@ export const TweetContainer = styled.div`
 export const TweetContent = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  max-width: 456px;
 
   .tweet-header {
     display: flex;
@@ -47,19 +47,25 @@ export const TweetContent = styled.div`
     font-size: 16px;
     line-height: 18.96px;
     margin-bottom: 16px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   .tweet-image {
     width: 100%;
+    height: 208px;
     border-radius: 16px;
     margin-bottom: 12px;
+    object-fit: cover;
   }
 
   .tweet-actions {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    color: #8899a6;
+    color: #72767A;
+    width: 20px;
+    height: 20px;
     gap: 34px;
 
     .action {

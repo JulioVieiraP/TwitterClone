@@ -5,7 +5,7 @@ export const TweetPostContainer = styled.div`
   flex-direction: row;
   align-items: flex-start;
   width: 590px;
-  height: 144px;
+  height: auto;
   padding: 16px 32px;
   border-top: 2px solid #161616;
   border-bottom: 2px solid #161616;
@@ -17,6 +17,12 @@ export const TweetForm = styled.form`
   width: 100%;
   margin-left: 20px;
 
+  .tweet-image {
+    width: 100%;
+    border-radius: 16px;
+    margin-bottom: 12px;
+  }
+
   textarea {
     background-color: transparent;
     border: none;
@@ -25,7 +31,7 @@ export const TweetForm = styled.form`
     font-size: 20px;
     line-height: 23.7px;
     resize: none;
-    margin-bottom: 8px;
+    margin-bottom: 24px;
 
     &:focus {
       outline: none;
@@ -39,8 +45,8 @@ export const TweetForm = styled.form`
   }
 
   button {
-    background-color: #fff;
-    color: #000;
+    background-color: #FFFFFF;
+    color: #000000;
     border: none;
     padding: 8px 16px;
     border-radius: 30.66px;

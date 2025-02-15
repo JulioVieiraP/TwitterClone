@@ -15,5 +15,13 @@ export const MainContainer = styled.main`
   border-top: none;
   border-bottom: none;
   padding: 20px 0;
+  width: 590px;
+  height: 100vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `
 

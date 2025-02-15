@@ -25,6 +25,7 @@ export const ContentItem = styled.div`
     align-items: center;
     justify-content: space-between;
     color: #FFFFFF;
+    gap: 8px;
 
     div{
         p {

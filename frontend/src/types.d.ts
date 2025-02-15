@@ -31,6 +31,13 @@ type Tweet = {
     retweets?: Tweet[];
 };
 
+declare type Trend = {
+    id: number;
+    nome: string;
+    counter: number;
+    update: string;
+}
+
 declare type UserProfile = {
     id?: number;
     username: string | undefined;
