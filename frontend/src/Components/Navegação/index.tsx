@@ -5,12 +5,13 @@ import { RiLogoutBoxLine } from "react-icons/ri";
 import Logo from "../Logo";
 import LogoTwitter from '../../assets/Logo_Twitter.png';
 import { useAuth } from "../../Context/useAuth";
+import { URL } from "../../App";
 
 
 
 const Navegacao = ({username, foto_perfil, email}: UserProfile ) => {
   const {user ,logout} = useAuth()
-  const imagemFormatada = `http://127.0.0.1:8000${foto_perfil}`
+  const imagemFormatada = `${URL}${foto_perfil}`
   return (
     <S.Sidebar>
       <div>

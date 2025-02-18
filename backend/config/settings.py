@@ -33,6 +33,7 @@ ALLOWED_HOSTS = [
     "backend",
     "127.0.0.1",
     "http://localhost:5173",
+    "https://juliovieirap.pythonanywhere.com",
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True

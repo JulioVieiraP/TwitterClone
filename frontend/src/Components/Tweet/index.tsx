@@ -5,6 +5,7 @@ import { TimeCalculator } from '../../Utils/timeSince';
 import { FaRegHeart, FaHeart, FaRegComment } from "react-icons/fa";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { URL } from '../../App';
 
 const Tweet = ({id ,user, imagem, likes, content, created_at, fetch, total_comments }: Tweet) => {
 
@@ -12,7 +13,7 @@ const Tweet = ({id ,user, imagem, likes, content, created_at, fetch, total_comme
 
     const formatUrl = (url?: string) => {
         if (!url) return undefined;
-        return url.startsWith('http') ? url : `http://127.0.0.1:8000${url}`;
+        return url.startsWith('https') ? url : `${URL}${url}`;
     };
 
     const handleLike = async () => {

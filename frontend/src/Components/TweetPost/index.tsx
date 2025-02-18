@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { URL} from '../../App';
 
 const tweetSchema = z.object({
     content: z.string()
@@ -26,7 +27,7 @@ type TweetPostProps = {
 
 const TweetPost = ({ fetchFeed, handleTweetPost }: TweetPostProps) => {
     const { user } = useAuth();
-    const imagemFormatada = `http://127.0.0.1:8000${user?.foto_perfil}`;
+    const imagemFormatada = `${URL}${user?.foto_perfil}`;
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -37,7 +38,7 @@ const TweetPost = ({ fetchFeed, handleTweetPost }: TweetPostProps) => {
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
         if (file) {
-            const imageUrl = URL.createObjectURL(file);
+            const imageUrl = window.URL.createObjectURL(file);
             setSelectedImage(imageUrl);
             setValue("image", file);
         }
