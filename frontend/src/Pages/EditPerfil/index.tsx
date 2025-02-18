@@ -86,6 +86,11 @@ const EditPerfil = () => {
         }
     };
 
+    const handleTextareaResize = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+        event.target.style.height = "auto";
+        event.target.style.height = `${event.target.scrollHeight}px`;
+    };
+
     return (
         <S.EditContainer>
             <S.HeaderEdit>
@@ -131,7 +136,7 @@ const EditPerfil = () => {
                     {errors.nome && <S.ErrorMessage>{errors.nome.message}</S.ErrorMessage>}
 
                     <label>Bio</label>
-                    <textarea {...register("bio")} placeholder="Fale um pouco sobre você" />
+                    <textarea {...register("bio")} placeholder="Fale um pouco sobre você" onInput={handleTextareaResize} />
                     {errors.bio && <S.ErrorMessage>{errors.bio.message}</S.ErrorMessage>}
 
                     <label>Link</label>

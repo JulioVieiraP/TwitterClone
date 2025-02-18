@@ -5,23 +5,24 @@ import Cadastro from "../Pages/Cadastro";
 import Feed from "../Pages/Feed";
 import Perfil from "../Pages/Perfil";
 import EditPerfil from "../Pages/EditPerfil";
-import { useAuth } from "../Context/useAuth";
 import TweetComments from "../Pages/Comentarios/TweetComments";
+import ProtectedRouter from "./ProtectedRoutes";
 
 const RouterView = () => {
-  const {user} = useAuth()
   return (
     <Routes>
       {/* Rotas públicas */}
-      <Route path="Cadastro" element={<Cadastro />} />
-      <Route path="Login" element={<Login />} />
+      <Route path="/cadastro" element={<Cadastro />} />
+      <Route path="/login" element={<Login />} />
 
-      {/* Rotas dentro da Home (com navegação e hashtags) */}
-      <Route path="/" element={<Home />}>
-        <Route index element={<Feed />} />
-        <Route path="editar-perfil/:id" element={<EditPerfil key={user?.id} />} />
-        <Route path="perfil-usuario/:id" element={<Perfil />} />
-        <Route path="/tweet/:id/comentarios" element={<TweetComments />} />
+      {/* Rotas protegidas dentro da Home */}
+      <Route element={<ProtectedRouter />}>
+        <Route path="/" element={<Home />}>
+          <Route index element={<Feed />} />
+          <Route path="editar-perfil/:id" element={<EditPerfil />} />
+          <Route path="perfil-usuario/:id" element={<Perfil />} />
+          <Route path="tweet/:id/comentarios" element={<TweetComments />} />
+        </Route>
       </Route>
     </Routes>
   );

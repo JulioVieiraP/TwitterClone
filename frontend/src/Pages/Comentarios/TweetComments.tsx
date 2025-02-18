@@ -73,7 +73,6 @@ const TweetComments = () => {
                 likes={tweet.likes}
                 content={tweet.content}
                 created_at={tweet.created_at}
-                retweet_of={tweet.retweet_of}
                 total_comments={tweet.total_comments}
                 fetch={fetchComments}
             />
@@ -95,7 +94,7 @@ const TweetComments = () => {
                             content={comment.content}
                             created_at={comment.created_at}
                             total_comments={comment.total_comments}
-                            retweet_of={comment.retweet_of}
+                            fetch={fetchComments}
                         />
                     ))
                 ) : (

@@ -44,6 +44,7 @@ export const EditForm = styled.form`
     textarea {
         resize: none;
         height: 80px;
+        overflow: hidden;
         border-radius: 24px !important;
     }
 

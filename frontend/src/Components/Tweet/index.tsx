@@ -1,12 +1,12 @@
 import * as S from './style'
 import Logo from '../Logo';
 import { TimeCalculator } from '../../Utils/timeSince';
-import { AiOutlineRetweet } from "react-icons/ai";
+// import { AiOutlineRetweet } from "react-icons/ai";
 import { FaRegHeart, FaHeart, FaRegComment } from "react-icons/fa";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const Tweet = ({id ,user, imagem, likes, content, created_at, retweet_of, fetch, total_comments }: Tweet) => {
+const Tweet = ({id ,user, imagem, likes, content, created_at, fetch, total_comments }: Tweet) => {
 
     const navigate = useNavigate()
 
@@ -51,7 +51,7 @@ const Tweet = ({id ,user, imagem, likes, content, created_at, retweet_of, fetch,
                 {Banner && <img className="tweet-image" src={Banner} alt="Tweet" />}
                 <div className="tweet-actions">
                     <div className="action" onClick={() => navigate(`/tweet/${id}/comentarios`)}><FaRegComment /> {total_comments}</div>
-                    <div className="action"><AiOutlineRetweet /> {retweet_of}</div>
+                    {/* <div className="action"><AiOutlineRetweet /> {retweet_of}</div> */}
                     <div className="action" onClick={handleLike} style={{ cursor: 'pointer' }}>
                         {LikesCount > 0 ? <FaHeart color="red" /> : <FaRegHeart />} {LikesCount}
                     </div>
