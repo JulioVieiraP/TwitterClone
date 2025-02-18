@@ -1,6 +1,5 @@
 import * as S from './style'
 import Logo from '../../Components/Logo';
-import LogoTwitter from '../../assets/Logo_Twitter.png';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../Context/useAuth';
 import { useState } from 'react';
@@ -19,7 +18,7 @@ const Login = () => {
     return (
         <S.Container>
             <div>
-                <Logo src={LogoTwitter} size={80}/>
+                <Logo src="/assets/Logo_Twitter.png" size={80}/>
                 <S.Title>Entre na sua conta</S.Title>
                 <S.Form onSubmit={handleSubmit}>
                     <S.Input type="text" placeholder="Digite seu Username" value={username} onChange={(e) => setUsername(e.target.value)}/>

@@ -1,6 +1,5 @@
 import * as S from './style'
 import Logo from '../../Components/Logo';
-import LogoTwitter from '../../assets/Logo_Twitter.png';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useAuth } from '../../Context/useAuth';
@@ -20,7 +19,7 @@ const Cadastro = () => {
     return (
         <S.ContainerCadastro>
             <div>
-                <Logo src={LogoTwitter} size={80}/>
+                <Logo src="/assets/Logo_Twitter.png" size={80}/>
                 <S.TitleCadastro>Crie sua conta</S.TitleCadastro>
                 <S.FormCadastro onSubmit={handleSubmit}>
                     <S.InputCadastro type="text" placeholder="Digite o seu nome" value={username} onChange={(e) => setUsername(e.target.value)}/>

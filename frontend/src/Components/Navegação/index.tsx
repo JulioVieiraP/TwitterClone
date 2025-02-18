@@ -3,7 +3,6 @@ import * as S from './style';
 import { FaHome, FaUser } from "react-icons/fa";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import Logo from "../Logo";
-import LogoTwitter from '../../assets/Logo_Twitter.png';
 import { useAuth } from "../../Context/useAuth";
 import { URL } from "../../App";
 
@@ -15,7 +14,7 @@ const Navegacao = ({username, foto_perfil, email}: UserProfile ) => {
   return (
     <S.Sidebar>
       <div>
-        <Logo size={32} src={LogoTwitter}/> 
+        <Logo size={32} src="/assets/Logo_Twitter.png"/> 
         <nav>
           <S.NavList>
             <li>
