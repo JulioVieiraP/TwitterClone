@@ -29,6 +29,8 @@ type Tweet = {
     answer_of?: number | null;
     retweet_of?: number | null;
     retweets?: Tweet[];
+    total_comments?: number;
+    fetch?: () => void;
 };
 
 declare type Trend = {
@@ -41,6 +43,7 @@ declare type Trend = {
 declare type UserProfile = {
     id?: number;
     username: string | undefined;
+    password?: string
     email?: string;
     foto_perfil?: string | null;
     banner?: string | null;

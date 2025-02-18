@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Logo from "../Logo";
 import * as S from "./style";
 
@@ -10,6 +11,7 @@ type Props = {
 };
 
 const Cards = ({ title, trends, suggested, onFollow, user  }: Props) => {
+    const navigate = useNavigate()
 
     const isFollowing = (userId: number | undefined) => {
         return (user?.following ?? []).some(following => following.id === userId);
@@ -32,7 +34,7 @@ const Cards = ({ title, trends, suggested, onFollow, user  }: Props) => {
           suggested.map((user) => (
             <S.ContentItem key={user.id}>
               <Logo src={user.foto_perfil} />
-              <div className="user-info">
+              <div className="user-info" onClick={() => navigate(`perfil-usuario/${user.id}`)} style={{cursor: "pointer"}}>
                 <p>{user.username}</p>
                 <span>@{user.username}</span>
               </div>

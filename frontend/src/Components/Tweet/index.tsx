@@ -2,16 +2,34 @@ import * as S from './style'
 import Logo from '../Logo';
 import { TimeCalculator } from '../../Utils/timeSince';
 import { AiOutlineRetweet } from "react-icons/ai";
-import { FaRegHeart, FaHeart, FaRegComment  } from "react-icons/fa";
+import { FaRegHeart, FaHeart, FaRegComment } from "react-icons/fa";
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-const Tweet = ({ user, imagem, likes, content, created_at, answer_of, retweet_of }: Tweet) => {
-    const fotoPerfil = user?.foto_perfil 
-        ? `http://127.0.0.1:8000${user.foto_perfil}` 
-        : undefined;
+const Tweet = ({id ,user, imagem, likes, content, created_at, retweet_of, fetch, total_comments }: Tweet) => {
 
-    const Banner = imagem 
-        ? `http://127.0.0.1:8000${imagem}` 
-        : undefined;
+    const navigate = useNavigate()
+
+    const formatUrl = (url?: string) => {
+        if (!url) return undefined;
+        return url.startsWith('http') ? url : `http://127.0.0.1:8000${url}`;
+    };
+
+    const handleLike = async () => {
+        try {
+          await axios.post(`/api/tweets/${id}/like/`);
+
+          if (fetch) {
+            fetch();
+          }
+          
+        } catch (error) {
+          console.error("Erro ao curtir o tweet:", error);
+        }
+      };
+
+    const fotoPerfil = formatUrl(user?.foto_perfil || '');
+    const Banner = formatUrl(imagem || '');
 
     const LikesCount = likes?.length ?? 0;
     const username = user?.username ?? "Usuário desconhecido";
@@ -32,9 +50,9 @@ const Tweet = ({ user, imagem, likes, content, created_at, answer_of, retweet_of
                 <div className="tweet-text">{content}</div>
                 {Banner && <img className="tweet-image" src={Banner} alt="Tweet" />}
                 <div className="tweet-actions">
-                    <div className="action"><FaRegComment /> {answer_of}</div>
+                    <div className="action" onClick={() => navigate(`/tweet/${id}/comentarios`)}><FaRegComment /> {total_comments}</div>
                     <div className="action"><AiOutlineRetweet /> {retweet_of}</div>
-                    <div className="action">
+                    <div className="action" onClick={handleLike} style={{ cursor: 'pointer' }}>
                         {LikesCount > 0 ? <FaHeart color="red" /> : <FaRegHeart />} {LikesCount}
                     </div>
                 </div>

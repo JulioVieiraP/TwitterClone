@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const Sidebar = styled.aside`
-  width: 280px;
   height: 600px;
   background: black;
   color: white;

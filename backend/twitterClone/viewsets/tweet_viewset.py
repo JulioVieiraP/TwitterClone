@@ -37,6 +37,7 @@ class TweetViewSet(ModelViewSet):
 
         if request.method == "POST":
             content = request.data.get("content")
+            image = request.FILES.get("imagem")
             if not content:
                 return Response(
                     {"error": "O comentário não pode estar vazio"},
@@ -45,7 +46,7 @@ class TweetViewSet(ModelViewSet):
 
             # Criando um novo tweet que é uma resposta ao tweet original
             comment = Tweet.objects.create(
-                user=request.user, content=content, answer_of=tweet
+                user=request.user, content=content, imagem=image, answer_of=tweet
             )
             return Response(
                 TweetSerializer(comment).data, status=status.HTTP_201_CREATED

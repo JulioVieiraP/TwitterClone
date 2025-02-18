@@ -8,6 +8,7 @@ class TweetSerializer(serializers.ModelSerializer):
     user = SimpleUsuarioSerializer(read_only=True)
     imagem = serializers.ImageField(required=False)
     likes = serializers.SerializerMethodField()
+    total_comments = serializers.SerializerMethodField()
 
     class Meta:
         model = Tweet
@@ -18,6 +19,9 @@ class TweetSerializer(serializers.ModelSerializer):
 
         likes = obj.likes.all()
         return TweetLikeSerializer(likes, many=True).data
+
+    def get_total_comments(self, obj):
+        return Tweet.objects.filter(answer_of=obj).count()
 
     def create(self, validated_data):
         # Criação do tweet

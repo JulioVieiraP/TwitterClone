@@ -4,7 +4,7 @@ export const TweetContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  width: 590px;
+  width: 100%;
   background-color: #000;
   padding: 24px 32px;
   gap: 24px;

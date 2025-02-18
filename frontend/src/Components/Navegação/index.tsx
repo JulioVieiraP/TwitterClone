@@ -9,7 +9,7 @@ import { useAuth } from "../../Context/useAuth";
 
 
 const Navegacao = ({username, foto_perfil, email}: UserProfile ) => {
-  const {logout} = useAuth()
+  const {user ,logout} = useAuth()
   const imagemFormatada = `http://127.0.0.1:8000${foto_perfil}`
   return (
     <S.Sidebar>
@@ -23,7 +23,7 @@ const Navegacao = ({username, foto_perfil, email}: UserProfile ) => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/meu-perfil" className={({ isActive }) => isActive ? "active" : ""}>
+              <NavLink to={`perfil-usuario/${user?.id}`} className={({ isActive }) => isActive ? "active" : ""}>
                 <FaUser size={20} /> Meu Perfil
               </NavLink>
             </li>

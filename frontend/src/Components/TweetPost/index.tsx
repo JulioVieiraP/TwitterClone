@@ -4,9 +4,8 @@ import { useAuth } from '../../Context/useAuth';
 import { CiImageOn } from "react-icons/ci";
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import axios from 'axios';
+import { z } from 'zod';
 
 const tweetSchema = z.object({
     content: z.string()
@@ -15,13 +14,17 @@ const tweetSchema = z.object({
     image: z.instanceof(File).optional(),
 });
 
-type TweetFormData = z.infer<typeof tweetSchema>;
-
-type TweetPostProps = {
-    fetchFeed: () => void;
+type TweetFormData = {
+    content: string;
+    image?: File;
 };
 
-const TweetPost = ({ fetchFeed }: TweetPostProps) => {
+type TweetPostProps = {
+    fetchFeed?: () => void;
+    handleTweetPost: (data: FormData) => void;
+};
+
+const TweetPost = ({ fetchFeed, handleTweetPost }: TweetPostProps) => {
     const { user } = useAuth();
     const imagemFormatada = `http://127.0.0.1:8000${user?.foto_perfil}`;
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -40,25 +43,23 @@ const TweetPost = ({ fetchFeed }: TweetPostProps) => {
         }
     };
 
-    const handleTweetPost = async (data: TweetFormData) => {
+    const onSubmit = async (data: TweetFormData) => {
         try {
             setIsSubmitting(true);
-    
+
             const formData = new FormData();
             formData.append("content", data.content);
-            
+
             if (data.image instanceof File) {
                 formData.append("imagem", data.image);
             }
-    
-            await axios.post("/api/tweets/", formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
-            });
 
-            fetchFeed();
-    
+            await handleTweetPost(formData);
+
+            if (fetchFeed) {
+                fetchFeed();
+            }
+
             reset();
             setSelectedImage(null);
         } catch (error) {
@@ -72,14 +73,13 @@ const TweetPost = ({ fetchFeed }: TweetPostProps) => {
         event.target.style.height = "auto";
         event.target.style.height = `${event.target.scrollHeight}px`;
     };
-    
 
     return (
         <S.TweetPostContainer>
             <div>
                 <Logo src={imagemFormatada} size={51} />
             </div>
-            <S.TweetForm onSubmit={handleSubmit(handleTweetPost)}>
+            <S.TweetForm onSubmit={handleSubmit(onSubmit)}>
                 <textarea
                     placeholder="O que está acontecendo?"
                     {...register("content")}

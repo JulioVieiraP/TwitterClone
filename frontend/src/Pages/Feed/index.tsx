@@ -16,6 +16,18 @@ const Feed = () => {
         }
     };
 
+    const handleTweetPost = async (formData: FormData) => {
+        try {
+            await axios.post("/api/tweets/", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            });
+        } catch (error) {
+            console.error("Erro ao postar tweet:", error);
+        }
+    };
+
     useEffect(() => {
         fetchFeed();
     }, []);
@@ -25,17 +37,23 @@ const Feed = () => {
             <S.Header>
                 <h1>Página inicial</h1>
             </S.Header>
-            <TweetPost fetchFeed={fetchFeed} />
+            <TweetPost 
+                fetchFeed={fetchFeed} 
+                handleTweetPost={handleTweetPost} 
+            />
             <section>
                 {feed.map((tweet) => (
                     <Tweet
                         key={tweet.id}
+                        id={tweet.id}
                         user={tweet.user}
                         imagem={tweet.imagem}
                         likes={tweet.likes}
                         content={tweet.content}
                         created_at={tweet.created_at}
                         retweets={tweet.retweets}
+                        total_comments={tweet.total_comments}
+                        fetch={fetchFeed}
                     />
                 ))}
             </section>

@@ -11,12 +11,14 @@ class FeedViewSet(ViewSet):
             "following", flat=True
         )
 
-        followed_tweets = Tweet.objects.filter(user__id__in=following_users).order_by(
-            "-created_at"
-        )
+        followed_tweets = Tweet.objects.filter(
+            user__id__in=following_users, answer_of__isnull=True
+        ).order_by("-created_at")
 
-        other_tweets = Tweet.objects.exclude(user__id__in=following_users).order_by(
-            "-created_at"
+        other_tweets = (
+            Tweet.objects.exclude(user__id__in=following_users)
+            .filter(answer_of__isnull=True)
+            .order_by("-created_at")
         )
 
         tweets = list(followed_tweets) + list(other_tweets)
