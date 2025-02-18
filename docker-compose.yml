@@ -26,9 +26,9 @@ services:
     image: postgres:15
     restart: always
     environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: twitterclone
+      SQL_USER: admin
+      SQL_PASSWORD: tLAcn7L2R32IRjfLM8NOssH5QVKCBjWJ
+      SQL_DATABASE: tweet_db_av5w
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
